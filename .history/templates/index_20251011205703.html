@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVD Risk Assessment System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Healthcare Background -->
+    <div class="healthcare-bg"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-heartbeat me-2"></i>
+                CVD Risk Assessment System
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#assessment">Assessment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-white mb-4">
+                        Cardiovascular Disease Risk Assessment
+                    </h1>
+                    <p class="lead text-white mb-4">
+                        Get instant assessment of your cardiovascular disease risk level using advanced machine learning algorithms. 
+                        Our system analyzes multiple health factors to provide personalized risk evaluation and recommendations.
+                    </p>
+                    <a href="#assessment" class="btn btn-light btn-lg">
+                        <i class="fas fa-stethoscope me-2"></i>
+                        Start Assessment
+                    </a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="hero-image">
+                        <i class="fas fa-user-md fa-10x text-white opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Form -->
+    <section id="assessment" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header bg-primary text-white text-center py-4">
+                            <h2 class="mb-0">
+                                <i class="fas fa-clipboard-list me-2"></i>
+                                Cardiovascular Risk Assessment Form
+                            </h2>
+                            <p class="mb-0 mt-2">Please fill in your health information for accurate risk assessment</p>
+                        </div>
+                        <div class="card-body p-5">
+                            <form id="assessmentForm">
+                                <!-- Personal Information -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3">
+                                            <i class="fas fa-user me-2"></i>
+                                            Personal Information
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="age" class="form-label">Age (years) *</label>
+                                        <input type="number" class="form-control highlight-input" id="age" name="Age" 
+                                               min="18" max="100" required>
+                                        <div class="form-text">Enter your current age</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="sex" class="form-label">Sex *</label>
+                                        <select class="form-select highlight-input" id="sex" name="Sex" required>
+                                            <option value="">Select Sex</option>
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Physical Measurements -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3">
+                                            <i class="fas fa-weight me-2"></i>
+                                            Physical Measurements
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="weight" class="form-label">Weight (kg) *</label>
+                                        <input type="number" class="form-control highlight-input" id="weight" name="Weight (kg)" 
+                                               step="0.1" min="30" max="200" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="height_m" class="form-label">Height (meters) *</label>
+                                        <input type="number" class="form-control highlight-input" id="height_m" name="Height (m)" 
+                                               step="0.01" min="1.0" max="2.5" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="height_cm" class="form-label">Height (cm)</label>
+                                        <input type="number" class="form-control highlight-input" id="height_cm" name="Height (cm)" 
+                                               min="100" max="250">
+                                        <div class="form-text">Optional: Alternative height input</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="waist" class="form-label">Abdominal Circumference (cm)</label>
+                                        <input type="number" class="form-control highlight-input" id="waist" name="Abdominal Circumference (cm)" 
+                                               step="0.1" min="50" max="150">
+                                        <div class="form-text">Waist measurement around the navel</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="bmi" class="form-label">BMI (calculated automatically)</label>
+                                        <input type="number" class="form-control" id="bmi" name="BMI" readonly>
+                                        <div class="form-text">Body Mass Index will be calculated</div>
+                                    </div>
+                                </div>
+
+                                <!-- Blood Pressure -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3">
+                                            <i class="fas fa-heartbeat me-2"></i>
+                                            Blood Pressure
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="systolic" class="form-label">Systolic BP (mmHg) *</label>
+                                        <input type="number" class="form-control highlight-input" id="systolic" name="Systolic BP" 
+                                               min="70" max="250" required>
+                                        <div class="form-text">Top number in blood pressure reading</div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="diastolic" class="form-label">Diastolic BP (mmHg) *</label>
+                                        <input type="number" class="form-control highlight-input" id="diastolic" name="Diastolic BP" 
+                                               min="40" max="150" required>
+                                        <div class="form-text">Bottom number in blood pressure reading</div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="bp_category" class="form-label">Blood Pressure Category</label>
+                                        <select class="form-select highlight-input" id="bp_category" name="Blood Pressure Category">
+                                            <option value="">Select Category</option>
+                                            <option value="Normal">Normal (< 120/80)</option>
+                                            <option value="Elevated">Elevated (120-129/< 80)</option>
+                                            <option value="Hypertension Stage 1">Hypertension Stage 1 (130-139/80-89)</option>
+                                            <option value="Hypertension Stage 2">Hypertension Stage 2 (≥ 140/90)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Cholesterol Levels -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3">
+                                            <i class="fas fa-tint me-2"></i>
+                                            Cholesterol Levels
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="total_chol" class="form-label">Total Cholesterol (mg/dL)</label>
+                                        <input type="number" class="form-control highlight-input" id="total_chol" name="Total Cholesterol (mg/dL)" 
+                                               min="100" max="400">
+                                        <div class="form-text">Desirable: < 200 mg/dL</div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="hdl" class="form-label">HDL Cholesterol (mg/dL)</label>
+                                        <input type="number" class="form-control highlight-input" id="hdl" name="HDL (mg/dL)" 
+                                               min="20" max="100">
+                                        <div class="form-text">Good: ≥ 60 mg/dL</div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="ldl" class="form-label">Estimated LDL (mg/dL)</label>
+                                        <input type="number" class="form-control highlight-input" id="ldl" name="Estimated LDL (mg/dL)" 
+                                               min="50" max="300">
+                                        <div class="form-text">Optimal: < 100 mg/dL</div>
+                                    </div>
+                                </div>
+
+                                <!-- Blood Sugar -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3">
+                                            <i class="fas fa-vial me-2"></i>
+                                            Blood Sugar
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="fasting_glucose" class="form-label">Fasting Blood Sugar (mg/dL)</label>
+                                        <input type="number" class="form-control highlight-input" id="fasting_glucose" name="Fasting Blood Sugar (mg/dL)" 
+                                               min="70" max="300">
+                                        <div class="form-text">Normal: 70-100 mg/dL</div>
+                                    </div>
+                                </div>
+
+                                <!-- Lifestyle Factors -->
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <h4 class="text-primary mb-3">
+                                            <i class="fas fa-running me-2"></i>
+                                            Lifestyle Factors
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="smoking" class="form-label">Smoking Status *</label>
+                                        <select class="form-select highlight-input" id="smoking" name="Smoking Status" required>
+                                            <option value="">Select Status</option>
+                                            <option value="N">Non-smoker</option>
+                                            <option value="Y">Current smoker</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="diabetes" class="form-label">Diabetes Status *</label>
+                                        <select class="form-select highlight-input" id="diabetes" name="Diabetes Status" required>
+                                            <option value="">Select Status</option>
+                                            <option value="N">No diabetes</option>
+                                            <option value="Y">Has diabetes</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="activity" class="form-label">Physical Activity Level *</label>
+                                        <select class="form-select highlight-input" id="activity" name="Physical Activity Level" required>
+                                            <option value="">Select Level</option>
+                                            <option value="Low">Low (minimal exercise)</option>
+                                            <option value="Moderate">Moderate (regular light exercise)</option>
+                                            <option value="High">High (regular vigorous exercise)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="family_history" class="form-label">Family History of CVD *</label>
+                                        <select class="form-select highlight-input" id="family_history" name="Family History of CVD" required>
+                                            <option value="">Select History</option>
+                                            <option value="N">No family history</option>
+                                            <option value="Y">Has family history</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg px-5">
+                                        <i class="fas fa-calculator me-2"></i>
+                                        Calculate Risk Assessment
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="py-5" style="display: none;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-header text-center py-4">
+                            <h2 class="mb-0">
+                                <i class="fas fa-chart-line me-2"></i>
+                                Risk Assessment Results
+                            </h2>
+                        </div>
+                        <div class="card-body p-5">
+                            <div id="riskResult" class="text-center mb-4">
+                                <!-- Results will be populated here -->
+                            </div>
+                            <div id="suggestions" class="mt-4">
+                                <!-- Suggestions will be populated here -->
+                            </div>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-outline-primary" onclick="resetForm()">
+                                    <i class="fas fa-redo me-2"></i>
+                                    New Assessment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-4">About CVD Risk Assessment</h2>
+                    <p class="lead">
+                        Our Cardiovascular Disease Risk Assessment system uses advanced machine learning algorithms 
+                        to analyze multiple health factors and provide personalized risk evaluation.
+                    </p>
+                    <div class="row mt-5">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fas fa-brain fa-3x text-primary mb-3"></i>
+                                <h5>AI-Powered</h5>
+                                <p>Advanced machine learning algorithms for accurate predictions</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                                <h5>Secure & Private</h5>
+                                <p>Your health data is processed securely and privately</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fas fa-user-md fa-3x text-primary mb-3"></i>
+                                <h5>Medical Grade</h5>
+                                <p>Based on clinical research and medical guidelines</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">
+                <i class="fas fa-heartbeat me-2"></i>
+                CVD Risk Assessment System - Powered by Machine Learning
+            </p>
+            <p class="mb-0 mt-2">
+                <small>This tool is for educational purposes only. Please consult with healthcare professionals for medical advice.</small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center py-4">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <h5>Analyzing Your Health Data...</h5>
+                    <p class="text-muted">Please wait while we process your information</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

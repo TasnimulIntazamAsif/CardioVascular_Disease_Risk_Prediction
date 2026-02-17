@@ -17,6 +17,9 @@ A Flask-based web application for Cardiovascular Disease (CVD) Risk Assessment u
 - **LOW**: Low cardiovascular disease risk
 - **INTERMEDIARY**: Moderate cardiovascular disease risk  
 - **HIGH**: High cardiovascular disease risk
+<img width="1303" height="711" alt="Screenshot 2026-01-12 221259" src="https://github.com/user-attachments/assets/d9acbe3d-86e8-46d5-9203-2f6fea6c75c6" />
+<img width="1268" height="658" alt="Screenshot 2026-01-12 221452" src="https://github.com/user-attachments/assets/366b7b9e-4553-4218-bf4e-b66c9d5e7c21" />
+
 
 ## Required Input Features
 
